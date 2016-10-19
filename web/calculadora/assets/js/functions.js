@@ -134,20 +134,20 @@ function Calcular(){
 		var tipo = document.getElementById('tipo').value;
 		
 		// an = a1 + (n-1)*r
-		an = parseInt(a1) + (parseInt(n)-1)*parseInt(r);
+		an = parseFloat(a1) + (parseInt(n)-1)*parseFloat(r);
 
-		st = ((parseInt(a1)+parseInt(an))*parseInt(n))/2;
+		st = ((parseFloat(a1)+parseFloat(an))*parseInt(n))/2;
 
 		document.getElementById('an').value = an;
 		document.getElementById('a1').value = a1;
-		document.getElementById('n').value = n;
+		document.getElementById('n').value = Math.round(n);
 		document.getElementById('r').value = r;
 		document.getElementById("st").value = st;
 
-		if(parseInt(r)===0)
+		if(parseFloat(r)===0)
 		{
 			document.getElementById('tipo').value = 'Progressão Constante';
-		}else if(parseInt(r)>0)
+		}else if(parseFloat(r)>0)
 		{
 			document.getElementById('tipo').value = 'Progressão Crescente';
 		}else
@@ -160,7 +160,7 @@ function Calcular(){
 	}
 	function mostrageometrica(an,a1,n,q,st){
 
-		var i = parseInt(a1);
+		var i = parseFloat(a1);
 		var aux = [];
 		var cont = 0;
 		var value = "";
@@ -169,7 +169,7 @@ function Calcular(){
 	
 		//console.log(par);
 		
-		if(parseInt(q)>0)
+		if(parseFloat(q)>0)
 		{
 			while(x<parseInt(n))
 			{	
@@ -177,21 +177,21 @@ function Calcular(){
 				aux[i] = i;
 				value+= aux[x];
 				document.getElementById("teste").innerHTML += " | "+i;
-				i *= parseInt(q);
+				i *= parseFloat(q);
 				cont++;
 				x++;
 		
 			}
 		}
 
-		else if(parseInt(q)<0)
+		else if(parseFloat(q)<0)
 		{
 				
 			while(x<parseInt(n))
 			{	
 
 				document.getElementById("teste").innerHTML += " | "+i;
-				i *= parseInt(q);
+				i *= parseFloat(q);
 				cont++;
 				x++;
 
@@ -207,16 +207,16 @@ function Calcular(){
 
 	function mostraaritmetica(an,a1,n,r,st){
 
-		var i = parseInt(a1);
+		var i = parseFloat(a1);
 		var aux = [];
 		var cont = 0;
 		var value = "";
 		var soma = 0;
 		var x=0;
 		
-		if(parseInt(r)>0)
+		if(parseFloat(r)>0)
 		{
-			while(i<=parseInt(an))
+			while(i<=parseFloat(an))
 			{	
 				aux[i] = i;
 				//console.log(aux[i]);
@@ -225,22 +225,22 @@ function Calcular(){
 				value+= aux[i];
 				document.getElementById("teste").innerHTML += " | "+i;
 				
-				i += parseInt(r);
+				i += parseFloat(r);
 				
 			
 			}
 		}
 
-		else if(parseInt(r)<0)
+		else if(parseFloat(r)<0)
 		{
-			while(i>=parseInt(an))
+			while(i>=parseFloat(an))
 			{	
 				aux[i] = i;
 				//console.log(aux[i]);
 				//document.write(aux[i]);
 				value-= aux[i];
 				document.getElementById("teste").innerHTML += " | "+i;
-				i += parseInt(r);
+				i += parseFloat(r);
 				cont++;
 			
 			}
@@ -264,19 +264,19 @@ function Calcular(){
 		var tipo = document.getElementById('tipo').value;
 		
 		// a1 = an - (n-1)*r
-		a1 = parseInt(an) - (parseInt(n)-1)*parseInt(r);
+		a1 = parseFloat(an) - (parseInt(n)-1)*parseFloat(r);
 
-		st = ((parseInt(a1)+parseInt(an))*parseInt(n))/2;
+		st = ((parseFloat(a1)+parseFloat(an))*parseInt(n))/2;
 
 		document.getElementById('an').value = an;
 		document.getElementById('a1').value = a1;
-		document.getElementById('n').value = n;
+		document.getElementById('n').value = Math.round(n);
 		document.getElementById('r').value = r;
 		document.getElementById("st").value = st;
-		if(parseInt(r)===0)
+		if(parseFloat(r)===0)
 		{
 			document.getElementById('tipo').value = 'Progressão Constante';
-		}else if(parseInt(r)>0)
+		}else if(parseFloat(r)>0)
 		{
 			document.getElementById('tipo').value = 'Progressão Crescente';
 		}else
@@ -301,25 +301,25 @@ function Calcular(){
 		{
 			document.getElementById('an').value = an;
 			document.getElementById('a1').value = a1;
-			document.getElementById('n').value = n;
+			document.getElementById('n').value = Math.round(n);
 			document.getElementById('r').value = r;
 			helpers.message("Calculo paralisado! Número de Termos < 0!");
 
 		}else{
 
 			// n = an-a1 - r*(-1)/r
-			n = (parseInt(an) - parseInt(a1) - parseInt(r)*(-1))/parseInt(r);
-			st = ((parseInt(a1)+parseInt(an))*parseInt(n))/2;
+			n = (parseFloat(an) - parseFloat(a1) - parseFloat(r)*(-1))/parseFloat(r);
+			st = ((parseFloat(a1)+parseFloat(an))*parseInt(n))/2;
 
 			document.getElementById('an').value = an;
 			document.getElementById('a1').value = a1;
-			document.getElementById('n').value = n;
+			document.getElementById('n').value = Math.round(n);
 			document.getElementById('r').value = r;
 			document.getElementById("st").value = st;
-			if(parseInt(r)===0)
+			if(parseFloat(r)===0)
 			{
 				document.getElementById('tipo').value = 'Progressão Constante';
-			}else if(parseInt(r)>0)
+			}else if(parseFloat(r)>0)
 			{
 				document.getElementById('tipo').value = 'Progressão Crescente';
 			}else
@@ -341,19 +341,19 @@ function Calcular(){
 		var tipo = document.getElementById('tipo').value;
 		
 		// r = an-a1/(n-1)
-		r = (parseInt(an)-parseInt(a1))/(parseInt(n)-1);
+		r = (parseFloat(an)-parseFloat(a1))/(parseInt(n)-1);
 
-		st = ((parseInt(a1)+parseInt(an))*parseInt(n))/2;
+		st = ((parseFloat(a1)+parseFloat(an))*parseInt(n))/2;
 
 		document.getElementById('an').value = an;
 		document.getElementById('a1').value = a1;
-		document.getElementById('n').value = n;
+		document.getElementById('n').value = Math.round(n);
 		document.getElementById('r').value = r;
 		document.getElementById("st").value = st;
-		if(parseInt(r)===0)
+		if(parseFloat(r)===0)
 		{
 			document.getElementById('tipo').value = 'Progressão Constante';
-		}else if(parseInt(r)>0)
+		}else if(parseFloat(r)>0)
 		{
 			document.getElementById('tipo').value = 'Progressão Crescente';
 		}else
@@ -368,6 +368,43 @@ function Calcular(){
 		var a1 = document.getElementById('a1').value;
 		var n = document.getElementById('n').value;
 		var q = document.getElementById('q').value;
+
+		/*var arrayInputs = [];
+
+		$('#an','#a1','#n','#q').each(function(){
+			var input = $(this);
+			if(input.val() === ''){
+				arrayInputs.push(input);
+			}
+		});
+
+		if(arrayInputs.length === 0){
+
+			helpers.message('Erro! Todos valores estão preenchidos!');	
+
+		} else if(arrayInputs.length > 1){
+
+			helpers.message('Erro! Mais de um valor não foi preenchido!');
+		}
+
+		var input = arrayInputs[0];
+
+		switch(input.attr('id')){
+			case 'an':
+				geometricaAn();
+				break;
+			case 'a1':
+				geometricaA1();
+				break;
+			case 'n':
+				geometricaN();
+				break;
+			case 'q':
+				geometricaQ();
+				break;
+
+		}
+	}*/
 
 		if(an === '' && a1 !== '' && n !== '' && q !== '')
 		{
@@ -406,19 +443,19 @@ function Calcular(){
 		
 		// an = a1 * q na potencia(n-1)
 		var aux = parseInt(n)-1;
-		an = parseInt(a1) * (Math.pow(parseInt(q),parseInt(aux)));
+		an = parseFloat(a1) * (Math.pow(parseFloat(q),parseFloat(aux)));
 
 		st = a1 * ((Math.pow(q,n)-1) / (q-1));
 
 		document.getElementById('an').value = an;
 		document.getElementById('a1').value = a1;
-		document.getElementById('n').value = n;
+		document.getElementById('n').value = Math.round(n);
 		document.getElementById('q').value = q;
 		document.getElementById("st").value = st;
-		if(parseInt(q)===0)
+		if(parseFloat(q)===0)
 		{
 			document.getElementById('tipo').value = 'Progressão Constante';
-		}else if(parseInt(q)>0)
+		}else if(parseFloat(q)>0)
 		{
 			document.getElementById('tipo').value = 'Progressão Crescente';
 		}else
@@ -439,19 +476,19 @@ function Calcular(){
 		
 		// a1 = an / pela potencia (q(n-1))
 		var aux = parseInt(n)-1;
-		a1 = parseInt(an) / (Math.pow(parseInt(q),parseInt(aux)));
+		a1 = parseFloat(an) / (Math.pow(parseFloat(q),parseFloat(aux)));
 
 		st = a1 * ((Math.pow(q,n)-1) / (q-1));
 
 		document.getElementById('an').value = an;
 		document.getElementById('a1').value = a1;
-		document.getElementById('n').value = n;
+		document.getElementById('n').value = Math.round(n);
 		document.getElementById('q').value = q;
 		document.getElementById("st").value = st;
-		if(parseInt(q)===0)
+		if(parseFloat(q)===0)
 		{
 			document.getElementById('tipo').value = 'Progressão Constante';
-		}else if(parseInt(q)>0)
+		}else if(parseFloat(q)>0)
 		{
 			document.getElementById('tipo').value = 'Progressão Crescente';
 		}else
@@ -473,20 +510,20 @@ function Calcular(){
 		// q = an/a1 na potencia 1/n-1 
 
 		var aux2 = 1/(parseInt(n)-1);
-		var aux3 = parseInt(an)/parseInt(a1);
+		var aux3 = parseFloat(an)/parseFloat(a1);
 		q = Math.pow(aux3,aux2);
 
 		st = a1 * ((Math.pow(q,n)-1) / (q-1));
 
 		document.getElementById('an').value = an;
 		document.getElementById('a1').value = a1;
-		document.getElementById('n').value = n;
+		document.getElementById('n').value = Math.round(n);
 		document.getElementById('q').value = q;
 		document.getElementById("st").value = st;
-		if(parseInt(q)===0)
+		if(parseFloat(q)===0)
 		{
 			document.getElementById('tipo').value = 'Progressão Constante';
-		}else if(parseInt(q)>0)
+		}else if(parseFloat(q)>0)
 		{
 			document.getElementById('tipo').value = 'Progressão Crescente';
 		}else
@@ -505,7 +542,7 @@ function Calcular(){
 		var st = document.getElementById('st').value;
 		var tipo = document.getElementById('tipo').value;
 		var aux_q = 0;
-		var aux = parseInt(an)/parseInt(a1);
+		var aux = parseFloat(an)/parseFloat(a1);
 		if(q<0)
 		{
 			aux_q = q*(-1);
@@ -514,7 +551,7 @@ function Calcular(){
 			aux_q = q;
 		}
 
-		var aux2 = Math.log(parseInt(aux_q));
+		var aux2 = Math.log(parseFloat(aux_q));
 		var x = 0;
 		
 		if(aux<0)
@@ -546,13 +583,13 @@ function Calcular(){
 
 		document.getElementById('an').value = an;
 		document.getElementById('a1').value = a1;
-		document.getElementById('n').value = n;
+		document.getElementById('n').value = Math.round(n);
 		document.getElementById('q').value = q;
 		document.getElementById("st").value = st;
-		if(parseInt(q)===0)
+		if(parseFloat(q)===0)
 		{
 			document.getElementById('tipo').value = 'Progressão Constante';
-		}else if(parseInt(q)>0)
+		}else if(parseFloat(q)>0)
 		{
 			document.getElementById('tipo').value = 'Progressão Crescente';
 		}else
@@ -565,8 +602,8 @@ function Calcular(){
 	$(document).ready(function(){
 		$('input').keypress(function(event){
 			var code = event.keyCode || event.which;
-			
-			return testNumberKeyPress(event, [46]);
+			// 45 = sinal(-) 46 = ponto(.)
+			return testNumberKeyPress(event, [46,45]);
 		});
 	});
 
@@ -577,8 +614,8 @@ function Calcular(){
        var validKeys   = [8,9,13,37,39];
        var paste       = key == 118 && event.ctrlKey; // Ctrl+V
        var copy        = key == 99 && event.ctrlKey; // Ctrl+C
-
-       if(arrayExceptions){
+       //console.log(key);
+       if(arrayExceptions){	
            [].push.apply(validKeys, arrayExceptions);
        }
 
