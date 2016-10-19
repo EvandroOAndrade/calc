@@ -23,7 +23,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/calculadora/';
+if($_SERVER['HTTP_HOST'] == 'localhost'){
+	$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/calculadora/web/calculadora';
+} else {
+	$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/calculadora/';
+}
 /*
 |--------------------------------------------------------------------------
 | Index File
