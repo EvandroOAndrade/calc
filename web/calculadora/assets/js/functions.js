@@ -561,3 +561,26 @@ function Calcular(){
 		}
 		mostrageometrica(an,a1,n,q,st);
 	}
+
+	$(document).ready(function(){
+		$('input').keypress(function(event){
+			var code = event.keyCode || event.which;
+			
+			return testNumberKeyPress(event, [46]);
+		});
+	});
+
+	function testNumberKeyPress(event, arrayExceptions) {
+       /* 8-BACKSPACE, 9-TAB, 13-ENTER, 37-left arrow, 39-right arrow, 44-ponto, 46-virgula,[48-57]-[0-9] */
+
+       var key = event.keyCode || event.which;
+       var validKeys   = [8,9,13,37,39];
+       var paste       = key == 118 && event.ctrlKey; // Ctrl+V
+       var copy        = key == 99 && event.ctrlKey; // Ctrl+C
+
+       if(arrayExceptions){
+           [].push.apply(validKeys, arrayExceptions);
+       }
+
+       return (key >= 48 && key <= 57) || validKeys.indexOf(key) >= 0 || paste || copy || event.key == "Delete";
+   }
