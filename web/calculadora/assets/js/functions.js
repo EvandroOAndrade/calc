@@ -136,7 +136,13 @@ function Calcular(a,b,c,delta,x1,x2,yv,xv){
 		}
 		else if(n === '' && an !== '' && a1 !== '' && r !== '')
 		{
-			aritmeticaN(an,a1,r);
+			if(a1>an && r>0)
+			{
+				helpers.message("Erro! A1>An com Razão Positiva!");
+			}else{
+				aritmeticaN(an,a1,r);
+			}
+			
 		}
 		else if(r === '' && an !== '' && a1 !== '' && n !== '')
 		{
@@ -150,6 +156,7 @@ function Calcular(a,b,c,delta,x1,x2,yv,xv){
 		{
 			helpers.message('Erro! Mais de um valor não foi preenchido!');	
 		}
+
 	}
 
 	function aritmeticaAn(a1,n,r){
@@ -355,13 +362,14 @@ function Calcular(a,b,c,delta,x1,x2,yv,xv){
 		var aux2 = 1/(parseInt(n)-1);
 		var aux3 = parseFloat(an)/parseFloat(a1);
 		q = Math.pow(aux3,aux2);
+		console.log("Q="+q);
 		st = a1 * ((Math.pow(q,n)-1) / (q-1));
 
 		atribui_geometrica(an,a1,n,q,st);
 		mostrageometrica(an,a1,n,q,st);
 	}
 
-	function geometricaN(){
+	function geometricaN(an,a1,q){
 
 		// n = log((an/a1)/log(q)) + 1
 		var aux_q = 0;
