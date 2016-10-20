@@ -1,5 +1,5 @@
-function Calcular(){
-
+function get_bhaskara()
+{
 		var a = document.getElementById('a').value;
 		var b = document.getElementById('b').value;
 		var c = document.getElementById('c').value;
@@ -8,6 +8,12 @@ function Calcular(){
 		var x2= document.getElementById('x2').value;
 		var yv= document.getElementById('yv').value;
 		var xv= document.getElementById('xv').value;
+
+		Calcular(a,b,c,delta,x1,x2,yv,xv);
+}
+
+function Calcular(a,b,c,delta,x1,x2,yv,xv){
+		
 		xv = 0;
 		var aux = 0;
 		var aux2 = 0;
@@ -43,19 +49,23 @@ function Calcular(){
 				xv = (aux === 0 ? 1 : aux)/(aux2 === 0 ? 1 : aux2);
 				yv = ((-delta)/(4*a));
 
-				document.getElementById("a").value = a;
-				document.getElementById("b").value = b;
-				document.getElementById("c").value = c;
-				document.getElementById("delta").value = delta;
-				document.getElementById("x1").value = x1;
-				document.getElementById("x2").value = x2;
-				document.getElementById("yv").value = yv;
-				document.getElementById("xv").value = xv;
+				mostrabhaskara(a,b,c,delta,x1,x2,yv,xv);
 
 			}
 		}
 	}	
 	
+	function mostrabhaskara(a,b,c,delta,x1,x2,yv,xv)
+	{
+		document.getElementById("a").value = a;
+		document.getElementById("b").value = b;
+		document.getElementById("c").value = c;
+		document.getElementById("delta").value = delta;
+		document.getElementById("x1").value = x1;
+		document.getElementById("x2").value = x2;
+		document.getElementById("yv").value = yv;
+		document.getElementById("xv").value = xv;
+	}
 
 	function limpa(){
 
@@ -92,27 +102,45 @@ function Calcular(){
 		document.getElementById("teste").value = "";
 	}
 
-	function aritmetica(){
+	function get_aritmetica()
+	{
 		var an = document.getElementById('an').value;
 		var a1 = document.getElementById('a1').value;
 		var n = document.getElementById('n').value;
 		var r = document.getElementById('r').value;
+		var tipo = document.getElementById('tipo').value;
+
+		aritmetica(an,a1,n,r,tipo);
+	}
+
+		function atribui_aritmetica(an,a1,n,r,st)
+	{
+		document.getElementById('an').value = an;
+		document.getElementById('a1').value = a1;
+		document.getElementById('n').value = Math.round(n);
+		document.getElementById('r').value = r;
+		document.getElementById("st").value = st;
+
+	}
+
+	function aritmetica(an,a1,n,r){
+		
 
 		if(an === '' && a1 !== '' && n !== '' && r !== '')
 		{
-			aritmeticaAn();
+			aritmeticaAn(a1,n,r);
 		}
 		else if(a1 === '' && an !== '' && n !== '' && r !== '')
 		{
-			aritmeticaA1();
+			aritmeticaA1(an,n,r);
 		}
 		else if(n === '' && an !== '' && a1 !== '' && r !== '')
 		{
-			aritmeticaN();
+			aritmeticaN(an,a1,r);
 		}
 		else if(r === '' && an !== '' && a1 !== '' && n !== '')
 		{
-			aritmeticaR();
+			aritmeticaR(an,a1,n);
 		}
 		else if(r !== '' && an !== '' && a1 !== '' && n !== '')
 		{
@@ -124,85 +152,60 @@ function Calcular(){
 		}
 	}
 
-	function aritmeticaAn(){
-
-		var an = document.getElementById('an').value;
-		var a1 = document.getElementById('a1').value;
-		var n = document.getElementById('n').value;
-		var r = document.getElementById('r').value;
-		var st = document.getElementById('st').value;
-		var tipo = document.getElementById('tipo').value;
+	function aritmeticaAn(a1,n,r){
 		
 		// an = a1 + (n-1)*r
 		an = parseFloat(a1) + (parseInt(n)-1)*parseFloat(r);
 
 		st = ((parseFloat(a1)+parseFloat(an))*parseInt(n))/2;
 
-		document.getElementById('an').value = an;
-		document.getElementById('a1').value = a1;
-		document.getElementById('n').value = Math.round(n);
-		document.getElementById('r').value = r;
-		document.getElementById("st").value = st;
-
-		if(parseFloat(r)===0)
-		{
-			document.getElementById('tipo').value = 'Progressão Constante';
-		}else if(parseFloat(r)>0)
-		{
-			document.getElementById('tipo').value = 'Progressão Crescente';
-		}else
-		{
-			document.getElementById('tipo').value = 'Progressão Decrescente';
-		}
-
+		atribui_aritmetica(an,a1,n,r,st);
+		
 		mostraaritmetica(an,a1,n,r,st);
 		
 	}
-	function mostrageometrica(an,a1,n,q,st){
 
-		var i = parseFloat(a1);
-		var aux = [];
-		var cont = 0;
-		var value = "";
-		var soma = 0;
-		var x=0;
-	
-		//console.log(par);
+	function aritmeticaA1(an,n,r){
 		
-		if(parseFloat(q)>0)
-		{
-			while(x<parseInt(n))
-			{	
+		// a1 = an - (n-1)*r
+		a1 = parseFloat(an) - (parseInt(n)-1)*parseFloat(r);
 
-				aux[i] = i;
-				value+= aux[x];
-				document.getElementById("teste").innerHTML += " | "+i;
-				i *= parseFloat(q);
-				cont++;
-				x++;
+		st = ((parseFloat(a1)+parseFloat(an))*parseInt(n))/2;
+
+		atribui_aritmetica(an,a1,n,r,st);
+		mostraaritmetica(an,a1,n,r,st);
+	}
+
+	function aritmeticaN(an,a1,r){
+
+		var aux_n=0;
 		
-			}
-		}
-
-		else if(parseFloat(q)<0)
+		if(n<0)
 		{
-				
-			while(x<parseInt(n))
-			{	
+			document.getElementById('an').value = an;
+			document.getElementById('a1').value = a1;
+			document.getElementById('n').value = Math.round(n);
+			document.getElementById('r').value = r;
+			helpers.message("Calculo paralisado! Número de Termos < 0!");
 
-				document.getElementById("teste").innerHTML += " | "+i;
-				i *= parseFloat(q);
-				cont++;
-				x++;
+		}else{
 
-			}
-			
+			// n = an-a1 - r*(-1)/r
+			n = (parseFloat(an) - parseFloat(a1) - parseFloat(r)*(-1))/parseFloat(r);
+			st = ((parseFloat(a1)+parseFloat(an))*parseInt(n))/2;
+
+			atribui_aritmetica(an,a1,n,r,st);
+			mostraaritmetica(an,a1,n,r,st);
 		}
+	}
 
-		else{
+	function aritmeticaR(an,a1,n){
 
-			document.getElementById("teste").innerHTML += " Progressão fixa em 0";
-		}
+		// r = an-a1/(n-1)
+		r = (parseFloat(an)-parseFloat(a1))/(parseInt(n)-1);
+		st = ((parseFloat(a1)+parseFloat(an))*parseInt(n))/2;
+		atribui_aritmetica(an,a1,n,r,st);
+		mostraaritmetica(an,a1,n,r,st);
 	}
 
 	function mostraaritmetica(an,a1,n,r,st){
@@ -251,28 +254,6 @@ function Calcular(){
 			document.getElementById("teste").innerHTML += " Progressão fixa em 0";
 		}
 			
-		
-	}
-
-	function aritmeticaA1(){
-
-		var an = document.getElementById('an').value;
-		var a1 = document.getElementById('a1').value;
-		var n = document.getElementById('n').value;
-		var r = document.getElementById('r').value;
-		var st = document.getElementById('st').value;
-		var tipo = document.getElementById('tipo').value;
-		
-		// a1 = an - (n-1)*r
-		a1 = parseFloat(an) - (parseInt(n)-1)*parseFloat(r);
-
-		st = ((parseFloat(a1)+parseFloat(an))*parseInt(n))/2;
-
-		document.getElementById('an').value = an;
-		document.getElementById('a1').value = a1;
-		document.getElementById('n').value = Math.round(n);
-		document.getElementById('r').value = r;
-		document.getElementById("st").value = st;
 		if(parseFloat(r)===0)
 		{
 			document.getElementById('tipo').value = 'Progressão Constante';
@@ -283,144 +264,37 @@ function Calcular(){
 		{
 			document.getElementById('tipo').value = 'Progressão Decrescente';
 		}
-		mostraaritmetica(an,a1,n,r,st);
 	}
 
-	function aritmeticaN(){
-
-		var an = document.getElementById('an').value;
-		var a1 = document.getElementById('a1').value;
-		var n = document.getElementById('n').value;
-		var r = document.getElementById('r').value;
-		var st = document.getElementById('st').value;
-		var tipo = document.getElementById('tipo').value;
-		var aux_n=0;
-		
-
-		if(n<0)
-		{
-			document.getElementById('an').value = an;
-			document.getElementById('a1').value = a1;
-			document.getElementById('n').value = Math.round(n);
-			document.getElementById('r').value = r;
-			helpers.message("Calculo paralisado! Número de Termos < 0!");
-
-		}else{
-
-			// n = an-a1 - r*(-1)/r
-			n = (parseFloat(an) - parseFloat(a1) - parseFloat(r)*(-1))/parseFloat(r);
-			st = ((parseFloat(a1)+parseFloat(an))*parseInt(n))/2;
-
-			document.getElementById('an').value = an;
-			document.getElementById('a1').value = a1;
-			document.getElementById('n').value = Math.round(n);
-			document.getElementById('r').value = r;
-			document.getElementById("st").value = st;
-			if(parseFloat(r)===0)
-			{
-				document.getElementById('tipo').value = 'Progressão Constante';
-			}else if(parseFloat(r)>0)
-			{
-				document.getElementById('tipo').value = 'Progressão Crescente';
-			}else
-			{
-				document.getElementById('tipo').value = 'Progressão Decrescente';
-			}
-			mostraaritmetica(an,a1,n,r,st);
-
-		}
-	}
-
-	function aritmeticaR(){
-
-		var an = document.getElementById('an').value;
-		var a1 = document.getElementById('a1').value;
-		var n = document.getElementById('n').value;
-		var r = document.getElementById('r').value;
-		var st = document.getElementById('st').value;
-		var tipo = document.getElementById('tipo').value;
-		
-		// r = an-a1/(n-1)
-		r = (parseFloat(an)-parseFloat(a1))/(parseInt(n)-1);
-
-		st = ((parseFloat(a1)+parseFloat(an))*parseInt(n))/2;
-
-		document.getElementById('an').value = an;
-		document.getElementById('a1').value = a1;
-		document.getElementById('n').value = Math.round(n);
-		document.getElementById('r').value = r;
-		document.getElementById("st").value = st;
-		if(parseFloat(r)===0)
-		{
-			document.getElementById('tipo').value = 'Progressão Constante';
-		}else if(parseFloat(r)>0)
-		{
-			document.getElementById('tipo').value = 'Progressão Crescente';
-		}else
-		{
-			document.getElementById('tipo').value = 'Progressão Decrescente';
-		}
-		mostraaritmetica(an,a1,n,r,st);
-	}
-
-	function geometrica(){
+	function get_geometrica()
+	{
 		var an = document.getElementById('an').value;
 		var a1 = document.getElementById('a1').value;
 		var n = document.getElementById('n').value;
 		var q = document.getElementById('q').value;
+		var st = document.getElementById('st').value;
+		var tipo = document.getElementById('tipo').value;
+		geometrica(an,a1,n,q,st,tipo);
+	}
 
-		/*var arrayInputs = [];
-
-		$('#an','#a1','#n','#q').each(function(){
-			var input = $(this);
-			if(input.val() === ''){
-				arrayInputs.push(input);
-			}
-		});
-
-		if(arrayInputs.length === 0){
-
-			helpers.message('Erro! Todos valores estão preenchidos!');	
-
-		} else if(arrayInputs.length > 1){
-
-			helpers.message('Erro! Mais de um valor não foi preenchido!');
-		}
-
-		var input = arrayInputs[0];
-
-		switch(input.attr('id')){
-			case 'an':
-				geometricaAn();
-				break;
-			case 'a1':
-				geometricaA1();
-				break;
-			case 'n':
-				geometricaN();
-				break;
-			case 'q':
-				geometricaQ();
-				break;
-
-		}
-	}*/
+	function geometrica(an,a1,n,q,st,tipo){
+		
 
 		if(an === '' && a1 !== '' && n !== '' && q !== '')
 		{
-			geometricaAn();
+			geometricaAn(a1,n,q);
 		}
 		else if(a1 === '' && an !== '' && n !== '' && q !== '')
 		{
-			geometricaA1();
+			geometricaA1(an,n,q);
 		}
 		else if(n === '' && an !== '' && a1 !== '' && q !== '')
 		{
-			geometricaN();
+			geometricaN(an,a1,q);
 		}
 		else if(q === '' && an !== '' && a1 !== '' && n !== '')
 		{
-			geometricaQ();
+			geometricaQ(an,a1,n);
 		}
 		else if(q !== '' && an !== '' && a1 !== '' && n !== '')
 		{
@@ -432,14 +306,26 @@ function Calcular(){
 		}
 	}
 
-	function geometricaAn(){
+	function atribui_geometrica(an,a1,n,q,st)
+	{
+		document.getElementById('an').value = an;
+		document.getElementById('a1').value = a1;
+		document.getElementById('n').value = Math.round(n);
+		document.getElementById('q').value = q;
+		document.getElementById("st").value = st;
+		if(parseFloat(q)===0)
+		{
+			document.getElementById('tipo').value = 'Progressão Constante';
+		}else if(parseFloat(q)>0)
+		{
+			document.getElementById('tipo').value = 'Progressão Crescente';
+		}else
+		{
+			document.getElementById('tipo').value = 'Progressão Decrescente';
+		}
+	}
 
-		var an = document.getElementById('an').value;
-		var a1 = document.getElementById('a1').value;
-		var n = document.getElementById('n').value;
-		var q = document.getElementById('q').value;
-		var st = document.getElementById('st').value;
-		var tipo = document.getElementById('tipo').value;
+	function geometricaAn(a1,n,q){
 		
 		// an = a1 * q na potencia(n-1)
 		var aux = parseInt(n)-1;
@@ -447,102 +333,40 @@ function Calcular(){
 
 		st = a1 * ((Math.pow(q,n)-1) / (q-1));
 
-		document.getElementById('an').value = an;
-		document.getElementById('a1').value = a1;
-		document.getElementById('n').value = Math.round(n);
-		document.getElementById('q').value = q;
-		document.getElementById("st").value = st;
-		if(parseFloat(q)===0)
-		{
-			document.getElementById('tipo').value = 'Progressão Constante';
-		}else if(parseFloat(q)>0)
-		{
-			document.getElementById('tipo').value = 'Progressão Crescente';
-		}else
-		{
-			document.getElementById('tipo').value = 'Progressão Decrescente';
-		}
+		atribui_geometrica(an,a1,n,q,st);
 		mostrageometrica(an,a1,n,q,st);
 	}
 
-	function geometricaA1(){
-
-		var an = document.getElementById('an').value;
-		var a1 = document.getElementById('a1').value;
-		var n = document.getElementById('n').value;
-		var q = document.getElementById('q').value;
-		var st = document.getElementById('st').value;
-		var tipo = document.getElementById('tipo').value;
+	function geometricaA1(an,n,q){
 		
 		// a1 = an / pela potencia (q(n-1))
 		var aux = parseInt(n)-1;
 		a1 = parseFloat(an) / (Math.pow(parseFloat(q),parseFloat(aux)));
-
 		st = a1 * ((Math.pow(q,n)-1) / (q-1));
 
-		document.getElementById('an').value = an;
-		document.getElementById('a1').value = a1;
-		document.getElementById('n').value = Math.round(n);
-		document.getElementById('q').value = q;
-		document.getElementById("st").value = st;
-		if(parseFloat(q)===0)
-		{
-			document.getElementById('tipo').value = 'Progressão Constante';
-		}else if(parseFloat(q)>0)
-		{
-			document.getElementById('tipo').value = 'Progressão Crescente';
-		}else
-		{
-			document.getElementById('tipo').value = 'Progressão Decrescente';
-		}
+		atribui_geometrica(an,a1,n,q,st);
 		mostrageometrica(an,a1,n,q,st);
 	}
 
-	function geometricaQ(){
-
-		var an = document.getElementById('an').value;
-		var a1 = document.getElementById('a1').value;
-		var n = document.getElementById('n').value;
-		var q = document.getElementById('q').value;
-		var st = document.getElementById('st').value;
-		var tipo = document.getElementById('tipo').value;
+	function geometricaQ(an,a1,n){
 
 		// q = an/a1 na potencia 1/n-1 
 
 		var aux2 = 1/(parseInt(n)-1);
 		var aux3 = parseFloat(an)/parseFloat(a1);
 		q = Math.pow(aux3,aux2);
-
 		st = a1 * ((Math.pow(q,n)-1) / (q-1));
 
-		document.getElementById('an').value = an;
-		document.getElementById('a1').value = a1;
-		document.getElementById('n').value = Math.round(n);
-		document.getElementById('q').value = q;
-		document.getElementById("st").value = st;
-		if(parseFloat(q)===0)
-		{
-			document.getElementById('tipo').value = 'Progressão Constante';
-		}else if(parseFloat(q)>0)
-		{
-			document.getElementById('tipo').value = 'Progressão Crescente';
-		}else
-		{
-			document.getElementById('tipo').value = 'Progressão Decrescente';
-		}
+		atribui_geometrica(an,a1,n,q,st);
 		mostrageometrica(an,a1,n,q,st);
 	}
 
 	function geometricaN(){
 
-		var an = document.getElementById('an').value;
-		var a1 = document.getElementById('a1').value;
-		var n = document.getElementById('n').value;
-		var q = document.getElementById('q').value;
-		var st = document.getElementById('st').value;
-		var tipo = document.getElementById('tipo').value;
+		// n = log((an/a1)/log(q)) + 1
 		var aux_q = 0;
 		var aux = parseFloat(an)/parseFloat(a1);
+		//tratamento razão negativa
 		if(q<0)
 		{
 			aux_q = q*(-1);
@@ -553,7 +377,7 @@ function Calcular(){
 
 		var aux2 = Math.log(parseFloat(aux_q));
 		var x = 0;
-		
+		//tratamento divisão negativa
 		if(aux<0)
 		{
 			aux*=(-1);
@@ -561,7 +385,7 @@ function Calcular(){
 
 			aux=aux;
 		}
-
+		//tratamento logaritmo negativo
 		if(aux2<0)
 		{
 			aux2*=(-1);
@@ -574,29 +398,52 @@ function Calcular(){
 
 		n = (x.toFixed(0));
 
-		console.log("Aux="+aux);
-		console.log("Aux2="+aux);
-		console.log("X="+x);
-
-		// n = log((an/a1)/log(q)) + 1
+		
 		st = a1 * ((Math.pow(q,n)-1) / (q-1));
 
-		document.getElementById('an').value = an;
-		document.getElementById('a1').value = a1;
-		document.getElementById('n').value = Math.round(n);
-		document.getElementById('q').value = q;
-		document.getElementById("st").value = st;
-		if(parseFloat(q)===0)
-		{
-			document.getElementById('tipo').value = 'Progressão Constante';
-		}else if(parseFloat(q)>0)
-		{
-			document.getElementById('tipo').value = 'Progressão Crescente';
-		}else
-		{
-			document.getElementById('tipo').value = 'Progressão Decrescente';
-		}
+		atribui_geometrica(an,a1,n,q,st);
 		mostrageometrica(an,a1,n,q,st);
+	}
+	
+	function mostrageometrica(an,a1,n,q,st){
+
+		var i = parseFloat(a1);
+		var aux = [];
+		var cont = 0;
+		var value = "";
+		var soma = 0;
+		var x=0;
+		
+		if(parseFloat(q)>0)
+		{
+			while(x<parseInt(n))
+			{	
+
+				document.getElementById("teste").innerHTML += " | "+i;
+				i *= parseFloat(q);
+				x++;
+		
+			}
+		}
+
+		else if(parseFloat(q)<0)
+		{
+				
+			while(x<parseInt(n))
+			{	
+
+				document.getElementById("teste").innerHTML += " | "+i;
+				i *= parseFloat(q);
+				x++;
+
+			}
+			
+		}
+
+		else{
+
+			document.getElementById("teste").innerHTML += " Progressão fixa em 0";
+		}
 	}
 
 	$(document).ready(function(){

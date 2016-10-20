@@ -29,7 +29,7 @@
 
 		<div class="panel-footer text-right">
                <button type="submit" class="btn btn-default" onclick="return limpageometrica();">Limpar</button>
-               <button type="button" Onclick="geometrica();" name="calcular" class="btn btn-primary" >Calcular</button>
+               <button type="button" Onclick="get_geometrica();" name="calcular" class="btn btn-primary" >Calcular</button>
         </div>
 
 		</form>

@@ -30,7 +30,7 @@
 
 		<div class="panel-footer text-right">
                <button type="submit" class="btn btn-default" onclick="return limpaaritmetica();">Limpar</button>
-               <button type="button" Onclick="aritmetica();" name="calcular" class="btn btn-primary" >Calcular</button>
+               <button type="button" Onclick="get_aritmetica();" name="calcular" class="btn btn-primary" >Calcular</button>
         </div>
 
 		</form>

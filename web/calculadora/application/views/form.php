@@ -26,7 +26,7 @@
 
 		<div class="panel-footer text-right">
                <button type="submit" class="btn btn-default" onclick="return limpa();">Limpar</button>
-               <button type="button" Onclick="Calcular();" name="calcular" class="btn btn-primary" >Calcular</button>
+               <button type="button" Onclick="get_bhaskara();" name="calcular" class="btn btn-primary" >Calcular</button>
         </div>
 
 		</form>
