@@ -136,9 +136,10 @@ function Calcular(a,b,c,delta,x1,x2,yv,xv){
 		}
 		else if(n === '' && an !== '' && a1 !== '' && r !== '')
 		{
-			if(a1>an && r>0)
+
+			if(parseInt(a1)>=parseInt(an) && parseInt(r)>0)
 			{
-				helpers.message("Erro! A1>An com Razão Positiva!");
+				helpers.message("Erro! A1>=An com Razão Positiva!");
 			}else{
 				aritmeticaN(an,a1,r);
 			}
@@ -206,13 +207,23 @@ function Calcular(a,b,c,delta,x1,x2,yv,xv){
 		}
 	}
 
-	function aritmeticaR(an,a1,n){
-
+	function aritmeticaR(an,a1,n){	
 		// r = an-a1/(n-1)
-		r = (parseFloat(an)-parseFloat(a1))/(parseInt(n)-1);
-		st = ((parseFloat(a1)+parseFloat(an))*parseInt(n))/2;
-		atribui_aritmetica(an,a1,n,r,st);
-		mostraaritmetica(an,a1,n,r,st);
+		if(parseInt(an)===parseInt(a1) && parseInt(n)===1)
+		{
+			r = 0;
+			st = ((parseFloat(a1)+parseFloat(an))*parseInt(n))/2;
+			atribui_aritmetica(an,a1,n,r,st);
+			mostraaritmetica(an,a1,n,r,st);	
+		}else{
+
+			r = (parseFloat(an)-parseFloat(a1))/(parseInt(n)-1);
+			st = ((parseFloat(a1)+parseFloat(an))*parseInt(n))/2;
+			atribui_aritmetica(an,a1,n,r,st);
+			mostraaritmetica(an,a1,n,r,st);	
+
+		}
+		
 	}
 
 	function mostraaritmetica(an,a1,n,r,st){
@@ -257,8 +268,12 @@ function Calcular(a,b,c,delta,x1,x2,yv,xv){
 		}
 
 		else{
-
-			document.getElementById("teste").innerHTML += " Progressão fixa em 0";
+			i = 0;
+			while(i<parseInt(n))
+			{
+				document.getElementById("teste").innerHTML += " | "+a1;
+				i++;
+			}	
 		}
 			
 		if(parseFloat(r)===0)
