@@ -112,7 +112,7 @@ function Calcular(a,b,c,delta,x1,x2,yv,xv){
 
 		if(parseInt(n)<=0)
 		{
-			helpers.message("Erro! Progressão com número de termo inválido!");
+			helpers.message("Erro! Progressão com número de termo Inválido!");
 		}else{
 
 			aritmetica(an,a1,n,r,tipo);
