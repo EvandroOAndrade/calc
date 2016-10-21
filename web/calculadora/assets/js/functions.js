@@ -110,9 +110,15 @@ function Calcular(a,b,c,delta,x1,x2,yv,xv){
 		var r = document.getElementById('r').value;
 		var tipo = document.getElementById('tipo').value;
 
-		aritmetica(an,a1,n,r,tipo);
-	}
+		if(parseInt(n)<=0)
+		{
+			helpers.message("Erro! Progressão com número de termos inválidos!");
+		}else{
 
+			aritmetica(an,a1,n,r,tipo);
+
+		}
+	}
 		function atribui_aritmetica(an,a1,n,r,st)
 	{
 		document.getElementById('an').value = an;
@@ -186,21 +192,17 @@ function Calcular(a,b,c,delta,x1,x2,yv,xv){
 
 	function aritmeticaN(an,a1,r){
 
-		var aux_n=0;
+		// n = an-a1 - r*(-1)/r
+		n = (parseFloat(an) - parseFloat(a1) - parseFloat(r)*(-1))/parseFloat(r);
+		st = ((parseFloat(a1)+parseFloat(an))*parseInt(n))/2;
 		
 		if(n<0)
 		{
-			document.getElementById('an').value = an;
-			document.getElementById('a1').value = a1;
-			document.getElementById('n').value = Math.round(n);
-			document.getElementById('r').value = r;
+			st = 0;
+			atribui_aritmetica(an,a1,n,r,st);
 			helpers.message("Calculo paralisado! Número de Termos < 0!");
 
 		}else{
-
-			// n = an-a1 - r*(-1)/r
-			n = (parseFloat(an) - parseFloat(a1) - parseFloat(r)*(-1))/parseFloat(r);
-			st = ((parseFloat(a1)+parseFloat(an))*parseInt(n))/2;
 
 			atribui_aritmetica(an,a1,n,r,st);
 			mostraaritmetica(an,a1,n,r,st);
@@ -240,8 +242,6 @@ function Calcular(a,b,c,delta,x1,x2,yv,xv){
 			while(i<=parseFloat(an))
 			{	
 				aux[i] = i;
-				//console.log(aux[i]);
-				//document.write(aux[i]);
 				cont++;
 				value+= aux[i];
 				document.getElementById("teste").innerHTML += " | "+i;
@@ -257,8 +257,6 @@ function Calcular(a,b,c,delta,x1,x2,yv,xv){
 			while(i>=parseFloat(an))
 			{	
 				aux[i] = i;
-				//console.log(aux[i]);
-				//document.write(aux[i]);
 				value-= aux[i];
 				document.getElementById("teste").innerHTML += " | "+i;
 				i += parseFloat(r);
@@ -296,7 +294,16 @@ function Calcular(a,b,c,delta,x1,x2,yv,xv){
 		var q = document.getElementById('q').value;
 		var st = document.getElementById('st').value;
 		var tipo = document.getElementById('tipo').value;
-		geometrica(an,a1,n,q,st,tipo);
+
+			if(parseInt(n)<=0)
+		{
+			helpers.message("Erro! Progressão com número de termos inválidos!");
+		}else{
+
+			geometrica(an,a1,n,q,st,tipo);
+
+		}
+		
 	}
 
 	function geometrica(an,a1,n,q,st,tipo){
@@ -377,7 +384,6 @@ function Calcular(a,b,c,delta,x1,x2,yv,xv){
 		var aux2 = 1/(parseInt(n)-1);
 		var aux3 = parseFloat(an)/parseFloat(a1);
 		q = Math.pow(aux3,aux2);
-		console.log("Q="+q);
 		st = a1 * ((Math.pow(q,n)-1) / (q-1));
 
 		atribui_geometrica(an,a1,n,q,st);
