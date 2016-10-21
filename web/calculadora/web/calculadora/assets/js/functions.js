@@ -13,7 +13,6 @@ function get_bhaskara()
 }
 
 function Calcular(a,b,c,delta,x1,x2,yv,xv){
-		
 		xv = 0;
 		var aux = 0;
 		var aux2 = 0;
@@ -112,7 +111,7 @@ function Calcular(a,b,c,delta,x1,x2,yv,xv){
 
 		if(parseInt(n)<=0)
 		{
-			helpers.message("Erro! Progressão com número de termos inválidos!");
+			helpers.message("Erro! Progressão com número de termo inválido!");
 		}else{
 
 			aritmetica(an,a1,n,r,tipo);
@@ -297,7 +296,7 @@ function Calcular(a,b,c,delta,x1,x2,yv,xv){
 
 			if(parseInt(n)<=0)
 		{
-			helpers.message("Erro! Progressão com número de termos inválidos!");
+			helpers.message("Erro! Progressão com número de termo inválido!");
 		}else{
 
 			geometrica(an,a1,n,q,st,tipo);
