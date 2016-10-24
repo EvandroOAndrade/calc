@@ -24,9 +24,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 if($_SERVER['HTTP_HOST'] == 'localhost'){
-	$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/calculadora/web/calculadora';
+	$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/calculadora/web/';
 } else {
-	$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/calculadora/';
+	$config['base_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/';
 }
 /*
 |--------------------------------------------------------------------------
