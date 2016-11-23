@@ -1,3 +1,14 @@
+function teste()
+{
+	var a = document.getElementById('a').value;
+	if(a==='')
+	{
+		helpers.message("Erro! Valor de A não preenchido!");
+	}
+	else{
+		get_bhaskara();
+	}
+}
 function get_bhaskara()
 {
 		var a = document.getElementById('a').value;
@@ -10,6 +21,7 @@ function get_bhaskara()
 		var xv= document.getElementById('xv').value;
 
 		Calcular(a,b,c,delta,x1,x2,yv,xv);
+
 }
 
 function Calcular(a,b,c,delta,x1,x2,yv,xv){

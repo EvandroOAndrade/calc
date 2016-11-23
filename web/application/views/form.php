@@ -3,7 +3,7 @@
 		<h2 class="form-login-heading" style="text-align:center">Calculadora Bhaskara</h2>
 		<h3 class="form-login-heading" style="text-align:center">Ax²+Bx+C=0</h3>
 		<h4 class="form-signin-heading">Valor de A:</h4>
-		<input type="text" id="a" name="a" class="form-control" placeholder="Valor de A" required autofocus>
+		<input type="text" id="a" name="a" class="form-control" placeholder="Valor de A" required>
 		<h4 class="form-signin-heading">Valor de B:</h4>
 		<input type="text" id="b" name="b" class="form-control" placeholder="Valor de B" required>
 		<h4 class="form-signin-heading">Valor de C:</h4>
@@ -25,8 +25,8 @@
 		<input type="text" id="yv" name="yv" class="form-control" placeholder="Y do Vértice" disabled>
 
 		<div class="panel-footer text-right">
-               <button type="submit" class="btn btn-default" onclick="return limpa();">Limpar</button>
-               <button type="button" Onclick="get_bhaskara();" name="calcular" class="btn btn-primary" >Calcular</button>
+               <button type="reset" class="btn btn-default">Limpar</button>
+               <button type="button" Onclick="teste();" name="calcular" class="btn btn-primary" >Calcular</button>
         </div>
 
 		</form>
